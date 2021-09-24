@@ -30,7 +30,7 @@ class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> {
     @NonNull
     @Override
     public ParseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tintuc, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.tvTitleTinTuc.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.poly.sotaythucung.model.CuaHang;
+import vn.poly.sotaythucung.model.Store;
 
 class CuaHangDAO {
     private SQLiteDB sqLiteDB;
@@ -16,20 +16,20 @@ class CuaHangDAO {
         this.sqLiteDB = sqLiteDB;
     }
 
-    public void addStore(CuaHang cuaHang) {
+    public void addStore(Store store) {
         SQLiteDatabase sqLiteDatabase = sqLiteDB.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("cuaHangID", cuaHang.getIdCuaHang());
-        contentValues.put("tenCuaHang", cuaHang.getTenCuaHang());
-        contentValues.put("dichVuCuaHang", cuaHang.getDichVuCuaHang());
-        contentValues.put("diaDiemCuaHang", cuaHang.getDiaChiCuaHang());
-        contentValues.put("kinhDoCuaHang", cuaHang.getKinhDoCuaHang());
-        contentValues.put("vidoCuaHang", cuaHang.getViDoCuaHang());
+        contentValues.put("cuaHangID", store.getIdCuaHang());
+        contentValues.put("tenCuaHang", store.getTenCuaHang());
+        contentValues.put("dichVuCuaHang", store.getDichVuCuaHang());
+        contentValues.put("diaDiemCuaHang", store.getDiaChiCuaHang());
+        contentValues.put("kinhDoCuaHang", store.getKinhDoCuaHang());
+        contentValues.put("vidoCuaHang", store.getViDoCuaHang());
         sqLiteDatabase.insert("cuaHang", null, contentValues);
     }
 
-    public List<CuaHang> getAllStore() {
-        List<CuaHang> cuaHangList = new ArrayList<>();
+    public List<Store> getAllStore() {
+        List<Store> storeList = new ArrayList<>();
         String query_getAllCuaHang = "SELECT * FROM cuaHang";
         Cursor cursor = sqLiteDB.getWritableDatabase().rawQuery(query_getAllCuaHang, null);
         if (cursor.getCount() > 0) {
@@ -41,19 +41,19 @@ class CuaHangDAO {
                 String kinhDoCuaHang = cursor.getString(4);
                 String viDoCuaHang = cursor.getString(5);
                 String anhCuaHang = cursor.getString(6);
-                CuaHang cuaHang = new CuaHang();
-                cuaHang.setTenCuaHang(tenCuaHang);
-                cuaHang.setDiaChiCuaHang(diaDiemCuaHang);
-                cuaHang.setDichVuCuaHang(dichVuCuaHang);
-                cuaHang.setKinhDoCuaHang(Double.parseDouble(kinhDoCuaHang));
-                cuaHang.setViDoCuaHang(Double.parseDouble(viDoCuaHang));
-                cuaHang.setAnhCuaHang(Integer.parseInt(anhCuaHang));
-                cuaHangList.add(cuaHang);
+                Store store = new Store();
+                store.setTenCuaHang(tenCuaHang);
+                store.setDiaChiCuaHang(diaDiemCuaHang);
+                store.setDichVuCuaHang(dichVuCuaHang);
+                store.setKinhDoCuaHang(Double.parseDouble(kinhDoCuaHang));
+                store.setViDoCuaHang(Double.parseDouble(viDoCuaHang));
+                store.setAnhCuaHang(Integer.parseInt(anhCuaHang));
+                storeList.add(store);
                 cursor.moveToNext();
             }
             cursor.close();
         }
-        return cuaHangList;
+        return storeList;
     }
 
     public void xoaCuaHang(String cuaHangID) {
